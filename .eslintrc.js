@@ -26,7 +26,6 @@ module.exports = {
     'no-console': ['error', { allow: ['tron'] }],
     'react/jsx-props-no-spreading': 'off',
     camelcase: 'off',
-    'max-classes-per-file': 'off',
   },
   settings: {
     'import/resolver': {
