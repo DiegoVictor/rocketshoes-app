@@ -1,13 +1,15 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
 
 import { Container, Logo, Basket, Amount } from './styles';
 
-export default function Header({ navigate }) {
+export default () => {
   const cartSize = useSelector(state => state.cart.length);
+  const { navigate } = useNavigation();
+
   return (
     <Container>
       <TouchableOpacity testID="home" onPress={() => navigate('Home')}>
@@ -20,8 +22,4 @@ export default function Header({ navigate }) {
       </Basket>
     </Container>
   );
-}
-
-Header.propTypes = {
-  navigate: PropTypes.func.isRequired,
 };
