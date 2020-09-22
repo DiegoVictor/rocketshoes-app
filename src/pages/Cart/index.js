@@ -30,16 +30,16 @@ export default () => {
     formatPrice(
       state.cart.reduce(
         (sum, product) => sum + product.price * product.amount,
-        0
-      )
-    )
+        0,
+      ),
+    ),
   );
 
   const cart = useSelector(state =>
     state.cart.map(product => ({
       ...product,
       subtotal: formatPrice(product.price * product.amount),
-    }))
+    })),
   );
 
   const cartSize = useMemo(() => cart.length, [cart]);
@@ -72,7 +72,7 @@ export default () => {
                     testID={`item_decrement_${product.id}`}
                     onPress={() =>
                       dispatch(
-                        updateAmountRequest(product.id, product.amount - 1)
+                        updateAmountRequest(product.id, product.amount - 1),
                       )
                     }
                   >
@@ -87,7 +87,7 @@ export default () => {
                     testID={`item_increment_${product.id}`}
                     onPress={() =>
                       dispatch(
-                        updateAmountRequest(product.id, product.amount + 1)
+                        updateAmountRequest(product.id, product.amount + 1),
                       )
                     }
                   >
