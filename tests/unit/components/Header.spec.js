@@ -6,9 +6,9 @@ import Header from '~/components/Header';
 
 jest.mock('react-redux');
 
-const navigate = jest.fn();
-
 describe('Header component', () => {
+  const navigate = jest.fn();
+
   it('should be able to go to Home page', () => {
     useSelector.mockImplementation(cd => cd({ cart: [] }));
 
