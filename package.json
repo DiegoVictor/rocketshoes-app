@@ -7,23 +7,27 @@
     "test": "jest"
   },
   "jest": {
-    "preset": "@testing-library/react-native",
-    "setupFilesAfterEnv": [
-      "@testing-library/jest-native/extend-expect"
-    ],
-    "moduleNameMapper": {
-      "^~/(.*)": "<rootDir>/src/$1"
-    },
-    "testMatch": [
-      "**/__tests__/**/*.test.js"
-    ],
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/components/**/*.js",
+      "src/pages/**/*.js",
       "src/store/**/*.js",
       "!src/store/index.js"
     ],
-    "coverageDirectory": "__tests__/coverage"
+    "coverageDirectory": "tests/coverage",
+    "moduleNameMapper": {
+      "^~/(.*)": "<rootDir>/src/$1"
+    },
+    "preset": "@testing-library/react-native",
+    "setupFiles": [
+      "./jest.setup.js"
+    ],
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-native/extend-expect"
+    ],
+    "testMatch": [
+      "**/tests/**/*.spec.js"
+    ]
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
