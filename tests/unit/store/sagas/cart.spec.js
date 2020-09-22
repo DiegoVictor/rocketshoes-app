@@ -11,7 +11,7 @@ import {
   addToCartSuccess,
 } from '~/store/actions/cart';
 import { navigate } from '~/services/navigator';
-import factory from '../../utils/factories';
+import factory from '../../../utils/factory';
 import { formatPrice } from '~/util/format';
 
 jest.mock('redux-saga/effects');
@@ -32,6 +32,24 @@ describe('Cart saga', () => {
     ).toPromise();
 
     expect(put).toHaveBeenCalledWith(updateAmountSuccess(product.id, amount));
+  });
+
+  it('should not be able update item amount with invalid amount', async () => {
+    const dispatch = jest.fn();
+    const product = await factory.attrs('Product');
+    const amount = faker.random.number({ max: -1 });
+
+    put.mockClear();
+
+    call.mockImplementation(() => ({ data: product }));
+
+    await runSaga(
+      { dispatch },
+      updateAmount,
+      updateAmountRequest(product.id, amount)
+    ).toPromise();
+
+    expect(put).not.toHaveBeenCalled();
   });
 
   it('should not be able update item amount', async () => {
