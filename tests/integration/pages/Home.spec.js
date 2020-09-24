@@ -2,12 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MockAdapter from 'axios-mock-adapter';
 import faker from 'faker';
-import {
-  render,
-  wait,
-  fireEvent,
-  waitForElement,
-} from '@testing-library/react-native';
+import { render, fireEvent, waitFor, act } from '@testing-library/react-native';
 
 import api from '~/services/api';
 import Home from '~/pages/Home';
@@ -37,7 +32,9 @@ describe('Home page', () => {
 
     const { getByTestId, getByText } = render(<Home />);
 
-    await waitForElement(() => getByTestId(`product_${product.id}`));
+    await waitFor(() =>
+      expect(getByTestId(`product_${product.id}`)).toBeTruthy(),
+    );
 
     expect(getByText(product.title)).toBeTruthy();
     expect(getByTestId(`product_price_${product.id}`)).toHaveTextContent(
@@ -63,7 +60,10 @@ describe('Home page', () => {
 
     const { getByTestId } = render(<Home />);
 
-    await wait(() => fireEvent.press(getByTestId(`product_add_${product.id}`)));
+    await waitFor(async () =>
+      expect(getByTestId(`product_add_${product.id}`)).toBeTruthy(),
+    );
+
     expect(dispatch).toHaveBeenCalledWith(addToCartRequest(product.id));
   });
 });
