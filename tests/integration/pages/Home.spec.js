@@ -10,13 +10,13 @@ import {
 } from '@testing-library/react-native';
 
 import api from '~/services/api';
-import Home from '~/components/pages/Home';
+import Home from '~/pages/Home';
 import { addToCartRequest } from '~/store/actions/cart';
-import factory from '../../utils/factories';
+import factory from '../../utils/factory';
 
 jest.mock('react-redux');
 
-const api_mock = new MockAdapter(api);
+const apiMock = new MockAdapter(api);
 const price = faker.random.number(100);
 
 describe('Home page', () => {
@@ -30,10 +30,10 @@ describe('Home page', () => {
     useSelector.mockImplementation(cb =>
       cb({
         cart: [product],
-      })
+      }),
     );
 
-    api_mock.onGet('products').reply(200, [product]);
+    apiMock.onGet('products').reply(200, [product]);
 
     const { getByTestId, getByText } = render(<Home />);
 
@@ -41,7 +41,7 @@ describe('Home page', () => {
 
     expect(getByText(product.title)).toBeTruthy();
     expect(getByTestId(`product_price_${product.id}`)).toHaveTextContent(
-      product.priceFormatted
+      product.priceFormatted,
     );
   });
 
@@ -56,10 +56,10 @@ describe('Home page', () => {
     useSelector.mockImplementation(cb =>
       cb({
         cart: [],
-      })
+      }),
     );
 
-    api_mock.onGet('products').reply(200, [product]);
+    apiMock.onGet('products').reply(200, [product]);
 
     const { getByTestId } = render(<Home />);
 
