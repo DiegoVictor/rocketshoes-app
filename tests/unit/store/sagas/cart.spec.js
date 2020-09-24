@@ -28,7 +28,7 @@ describe('Cart saga', () => {
     await runSaga(
       { dispatch },
       updateAmount,
-      updateAmountRequest(product.id, amount)
+      updateAmountRequest(product.id, amount),
     ).toPromise();
 
     expect(put).toHaveBeenCalledWith(updateAmountSuccess(product.id, amount));
@@ -46,7 +46,7 @@ describe('Cart saga', () => {
     await runSaga(
       { dispatch },
       updateAmount,
-      updateAmountRequest(product.id, amount)
+      updateAmountRequest(product.id, amount),
     ).toPromise();
 
     expect(put).not.toHaveBeenCalled();
@@ -64,11 +64,11 @@ describe('Cart saga', () => {
     await runSaga(
       { dispatch },
       updateAmount,
-      updateAmountRequest(product.id, amount)
+      updateAmountRequest(product.id, amount),
     ).toPromise();
 
     expect(Alert.alert).toHaveBeenCalledWith(
-      'Quantidade solicitada fora do estoque'
+      'Quantidade solicitada fora do estoque',
     );
   });
 
@@ -93,7 +93,7 @@ describe('Cart saga', () => {
     await runSaga(
       { dispatch },
       addToCart,
-      addToCartRequest(product.id)
+      addToCartRequest(product.id),
     ).toPromise();
 
     expect(put).toHaveBeenCalledWith(
@@ -101,7 +101,7 @@ describe('Cart saga', () => {
         ...product,
         amount: 1,
         priceFormatted: product.priceFormatted,
-      })
+      }),
     );
     expect(navigate).toHaveBeenCalledWith('Cart');
   });
@@ -126,11 +126,11 @@ describe('Cart saga', () => {
     await runSaga(
       { dispatch },
       addToCart,
-      addToCartRequest(product.id)
+      addToCartRequest(product.id),
     ).toPromise();
 
     expect(put).toHaveBeenCalledWith(
-      updateAmountSuccess(product.id, product.amount + 1)
+      updateAmountSuccess(product.id, product.amount + 1),
     );
   });
 
@@ -155,11 +155,11 @@ describe('Cart saga', () => {
     await runSaga(
       { dispatch },
       addToCart,
-      addToCartRequest(product.id)
+      addToCartRequest(product.id),
     ).toPromise();
 
     expect(Alert.alert).toHaveBeenCalledWith(
-      'Quantidade solicitada fora do estoque'
+      'Quantidade solicitada fora do estoque',
     );
   });
 });

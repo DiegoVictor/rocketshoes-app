@@ -51,7 +51,7 @@ describe('Cart reducer', () => {
 
     const state = reducer(
       [product],
-      updateAmountSuccess(faker.random.number({ min: product.id + 1 }), amount)
+      updateAmountSuccess(faker.random.number({ min: product.id + 1 }), amount),
     );
     expect(state).toContainEqual(product);
   });
