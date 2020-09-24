@@ -3,15 +3,15 @@ import { render, fireEvent } from '@testing-library/react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import faker from 'faker';
 
-import Cart from '~/components/pages/Cart';
+import Cart from '~/pages/Cart';
 import { removeFromCart, updateAmountRequest } from '~/store/actions/cart';
-import factory from '../../utils/factories';
+import factory from '../../utils/factory';
 
 jest.mock('react-redux');
 
-const price = faker.random.number({ min: 1, max: 100 });
-
 describe('Cart page', () => {
+  const price = faker.random.number({ min: 1, max: 100 });
+
   it('should be able to see an item on the cart', async () => {
     const product = await factory.attrs('Product', {
       price,
@@ -22,7 +22,7 @@ describe('Cart page', () => {
     useSelector.mockImplementation(cb =>
       cb({
         cart: [product],
-      })
+      }),
     );
 
     const { getByTestId, getByText } = render(<Cart />);
@@ -30,14 +30,27 @@ describe('Cart page', () => {
     expect(getByTestId(`item_${product.id}`)).toBeTruthy();
     expect(getByText(product.title)).toBeTruthy();
     expect(getByTestId(`item_price_${product.id}`)).toHaveTextContent(
-      product.priceFormatted
+      product.priceFormatted,
     );
     expect(getByTestId(`item_subtotal_${product.id}`)).toHaveTextContent(
-      `R$ ${product.price * product.amount}.00`
+      `R$ ${product.price * product.amount}.00`,
     );
     expect(getByTestId('total')).toHaveTextContent(
-      `R$ ${product.price * product.amount}.00`
+      `R$ ${product.price * product.amount}.00`,
     );
+  });
+
+  it('should be able to see the cart empty', async () => {
+    useDispatch.mockReturnValue(jest.fn());
+    useSelector.mockImplementation(cb =>
+      cb({
+        cart: [],
+      }),
+    );
+
+    const { getByText } = render(<Cart />);
+
+    expect(getByText('Seu carrinho está vazio.')).toBeTruthy();
   });
 
   it('should be able to remove an item from the cart', async () => {
@@ -51,7 +64,7 @@ describe('Cart page', () => {
     useSelector.mockImplementation(cb =>
       cb({
         cart: [product],
-      })
+      }),
     );
     const { getByTestId } = render(<Cart />);
 
@@ -70,13 +83,13 @@ describe('Cart page', () => {
     useSelector.mockImplementation(cb =>
       cb({
         cart: [product],
-      })
+      }),
     );
     const { getByTestId } = render(<Cart />);
 
     fireEvent.press(getByTestId(`item_increment_${product.id}`));
     expect(dispatch).toHaveBeenCalledWith(
-      updateAmountRequest(product.id, product.amount + 1)
+      updateAmountRequest(product.id, product.amount + 1),
     );
   });
 
@@ -91,13 +104,13 @@ describe('Cart page', () => {
     useSelector.mockImplementation(cb =>
       cb({
         cart: [product],
-      })
+      }),
     );
     const { getByTestId } = render(<Cart />);
 
     fireEvent.press(getByTestId(`item_decrement_${product.id}`));
     expect(dispatch).toHaveBeenCalledWith(
-      updateAmountRequest(product.id, product.amount - 1)
+      updateAmountRequest(product.id, product.amount - 1),
     );
   });
 });
