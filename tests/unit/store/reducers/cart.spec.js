@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-import reducer, { initial_state } from '~/store/reducers/cart';
+import reducer, { initialState } from '~/store/reducers/cart';
 import {
   addToCartSuccess,
   removeFromCart,
@@ -10,12 +10,12 @@ import {
 describe('Cart reducer', () => {
   it('DEFAULT', () => {
     const state = reducer(undefined, {});
-    expect(state).toBe(initial_state);
+    expect(state).toBe(initialState);
   });
 
   it('ADD_SUCCESS', () => {
     const product = { id: faker.random.number() };
-    const state = reducer(initial_state, addToCartSuccess(product));
+    const state = reducer(initialState, addToCartSuccess(product));
     expect(state).toContainEqual(product);
   });
 
@@ -23,7 +23,7 @@ describe('Cart reducer', () => {
     const product = { id: faker.random.number() };
     const state = reducer(
       [product],
-      removeFromCart(faker.random.number({ min: product.id + 1 }))
+      removeFromCart(faker.random.number({ min: product.id + 1 })),
     );
     expect(state).toHaveLength(1);
   });
