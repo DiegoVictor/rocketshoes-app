@@ -10,12 +10,12 @@ import {
   addToCartRequest,
   addToCartSuccess,
 } from '~/store/actions/cart';
-import { navigate } from '~/services/navigator';
+import { navigate } from '~/services/navigation';
 import factory from '../../../utils/factory';
 import { formatPrice } from '~/util/format';
 
 jest.mock('redux-saga/effects');
-jest.mock('~/services/navigator');
+jest.mock('~/services/navigation');
 
 describe('Cart saga', () => {
   it('should be able update item amount', async () => {
