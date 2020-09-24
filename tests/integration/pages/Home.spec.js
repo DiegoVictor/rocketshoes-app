@@ -10,11 +10,16 @@ import { addToCartRequest } from '~/store/actions/cart';
 import factory from '../../utils/factory';
 
 jest.mock('react-redux');
-
-const apiMock = new MockAdapter(api);
-const price = faker.random.number(100);
+jest.mock('~/util/format', () => {
+  return {
+    formatPrice: value => `R$ ${value.toFixed(2)}`,
+  };
+});
 
 describe('Home page', () => {
+  const apiMock = new MockAdapter(api);
+  const price = faker.random.number(100);
+
   it('should be able to see an item in the dashboard', async () => {
     const product = await factory.attrs('Product', {
       price,

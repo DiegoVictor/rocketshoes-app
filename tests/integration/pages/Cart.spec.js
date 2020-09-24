@@ -8,6 +8,11 @@ import { removeFromCart, updateAmountRequest } from '~/store/actions/cart';
 import factory from '../../utils/factory';
 
 jest.mock('react-redux');
+jest.mock('~/util/format', () => {
+  return {
+    formatPrice: value => `R$ ${value.toFixed(2)}`,
+  };
+});
 
 describe('Cart page', () => {
   const price = faker.random.number({ min: 1, max: 100 });
