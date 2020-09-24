@@ -64,6 +64,9 @@ describe('Home page', () => {
       expect(getByTestId(`product_add_${product.id}`)).toBeTruthy(),
     );
 
+    await act(async () => {
+      fireEvent.press(getByTestId(`product_add_${product.id}`));
+    });
     expect(dispatch).toHaveBeenCalledWith(addToCartRequest(product.id));
   });
 });
