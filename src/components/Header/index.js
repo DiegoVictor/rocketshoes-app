@@ -17,8 +17,10 @@ export default () => {
       </TouchableOpacity>
 
       <Basket testID="cart" onPress={() => navigate('Cart')}>
-        <Icon name="shopping-basket" color="#FFF" size={24} />
-        <Amount>{cartSize}</Amount>
+        <>
+          <Icon name="shopping-basket" color="#FFF" size={24} />
+          <Amount>{cartSize}</Amount>
+        </>
       </Basket>
     </Container>
   );
