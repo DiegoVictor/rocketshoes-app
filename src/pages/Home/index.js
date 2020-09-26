@@ -52,7 +52,7 @@ export default () => {
           renderItem={({ item }) => (
             <Product testID={`product_${item.id}`}>
               <Preview source={{ uri: item.image }} />
-              <Name>{item.title}</Name>
+              <Name testID={`product_title_${item.id}`}>{item.title}</Name>
               <Price testID={`product_price_${item.id}`}>
                 {item.priceFormatted}
               </Price>
