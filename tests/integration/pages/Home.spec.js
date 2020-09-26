@@ -2,8 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MockAdapter from 'axios-mock-adapter';
 import faker from 'faker';
-import { render, fireEvent, waitFor, act } from '@testing-library/react-native';
+import { fireEvent, act } from '@testing-library/react-native';
 
+import { create } from 'react-test-renderer';
 import api from '~/services/api';
 import Home from '~/pages/Home';
 import { addToCartRequest } from '~/store/actions/cart';
@@ -35,16 +36,28 @@ describe('Home page', () => {
 
     apiMock.onGet('products').reply(200, [product]);
 
-    const { getByTestId, getByText } = render(<Home />);
+    let root;
+    await act(async () => {
+      root = create(<Home />);
+    });
 
-    await waitFor(() =>
-      expect(getByTestId(`product_${product.id}`)).toBeTruthy(),
-    );
+    expect(
+      root.root.findByProps({
+        testID: `product_${product.id}`,
+      }),
+    ).toBeTruthy();
 
-    expect(getByText(product.title)).toBeTruthy();
-    expect(getByTestId(`product_price_${product.id}`)).toHaveTextContent(
-      product.priceFormatted,
-    );
+    const productTitle = root.root.findByProps({
+      testID: `product_title_${product.id}`,
+    });
+    expect(productTitle).toBeTruthy();
+    expect(productTitle.props.children).toBe(product.title);
+
+    const productPrice = root.root.findByProps({
+      testID: `product_price_${product.id}`,
+    });
+    expect(productPrice).toBeTruthy();
+    expect(productPrice.props.children).toBe(`R$ ${product.price.toFixed(2)}`);
   });
 
   it('should be able to add item to cart', async () => {
@@ -63,14 +76,19 @@ describe('Home page', () => {
 
     apiMock.onGet('products').reply(200, [product]);
 
-    const { getByTestId } = render(<Home />);
+    // const { getByTestId } = render(<Home />);
+    let root;
+    await act(async () => {
+      root = create(<Home />);
+    });
 
-    await waitFor(async () =>
-      expect(getByTestId(`product_add_${product.id}`)).toBeTruthy(),
-    );
+    const button = root.root.findByProps({
+      testID: `product_add_${product.id}`,
+    });
+    expect(button).toBeTruthy();
 
     await act(async () => {
-      fireEvent.press(getByTestId(`product_add_${product.id}`));
+      fireEvent.press(button);
     });
     expect(dispatch).toHaveBeenCalledWith(addToCartRequest(product.id));
   });
