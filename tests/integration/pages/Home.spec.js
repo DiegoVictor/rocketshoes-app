@@ -76,7 +76,6 @@ describe('Home page', () => {
 
     apiMock.onGet('products').reply(200, [product]);
 
-    // const { getByTestId } = render(<Home />);
     let root;
     await act(async () => {
       root = create(<Home />);
