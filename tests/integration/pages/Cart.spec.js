@@ -15,7 +15,7 @@ jest.mock('~/util/format', () => {
 });
 
 describe('Cart page', () => {
-  const price = faker.random.number({ min: 1, max: 100 });
+  const price = faker.datatype.number({ min: 1, max: 100 });
 
   it('should be able to see an item on the cart', async () => {
     const product = await factory.attrs('Product', {

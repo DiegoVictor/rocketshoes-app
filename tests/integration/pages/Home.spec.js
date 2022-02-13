@@ -19,7 +19,7 @@ jest.mock('~/util/format', () => {
 
 describe('Home page', () => {
   const apiMock = new MockAdapter(api);
-  const price = faker.random.number(100);
+  const price = faker.datatype.number(100);
 
   it('should be able to see an item in the dashboard', async () => {
     const product = await factory.attrs('Product', {

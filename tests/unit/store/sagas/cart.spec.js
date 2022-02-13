@@ -21,7 +21,7 @@ describe('Cart saga', () => {
   it('should be able update item amount', async () => {
     const dispatch = jest.fn();
     const product = await factory.attrs('Product');
-    const amount = faker.random.number({ min: 1, max: product.amount });
+    const amount = faker.datatype.number({ min: 1, max: product.amount });
 
     call.mockImplementation(() => ({ data: product }));
 
@@ -37,7 +37,7 @@ describe('Cart saga', () => {
   it('should not be able update item amount with invalid amount', async () => {
     const dispatch = jest.fn();
     const product = await factory.attrs('Product');
-    const amount = faker.random.number({ max: -1 });
+    const amount = faker.datatype.number({ max: -1 });
 
     put.mockClear();
 
@@ -57,7 +57,7 @@ describe('Cart saga', () => {
     Alert.alert = jest.fn();
 
     const product = await factory.attrs('Product');
-    const amount = faker.random.number({ min: 6 });
+    const amount = faker.datatype.number({ min: 6 });
 
     call.mockImplementation(() => ({ data: product }));
 
@@ -75,7 +75,7 @@ describe('Cart saga', () => {
   it('should be able to add item to cart', async () => {
     const dispatch = jest.fn();
     const stock = await factory.attrs('Stock', {
-      amount: faker.random.number({ min: 5 }),
+      amount: faker.datatype.number({ min: 5 }),
     });
     const product = await factory.attrs('Product');
     product.priceFormatted = formatPrice(product.price);
@@ -109,10 +109,10 @@ describe('Cart saga', () => {
   it('should be able to increase item amount', async () => {
     const dispatch = jest.fn();
     const stock = await factory.attrs('Stock', {
-      amount: faker.random.number({ min: 5 }),
+      amount: faker.datatype.number({ min: 5 }),
     });
     const product = await factory.attrs('Product', {
-      amount: faker.random.number({ min: 1, max: stock.amount - 1 }),
+      amount: faker.datatype.number({ min: 1, max: stock.amount - 1 }),
     });
 
     select.mockImplementation(cb => cb({ cart: [product] }));
@@ -137,10 +137,10 @@ describe('Cart saga', () => {
   it('should not be able to increase item amount', async () => {
     const dispatch = jest.fn();
     const stock = await factory.attrs('Stock', {
-      amount: faker.random.number({ max: 5 }),
+      amount: faker.datatype.number({ max: 5 }),
     });
     const product = await factory.attrs('Product', {
-      amount: faker.random.number({ min: 5 }),
+      amount: faker.datatype.number({ min: 5 }),
     });
 
     select.mockImplementation(cb => cb({ cart: [product] }));
