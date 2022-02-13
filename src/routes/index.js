@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Header from '~/components/Header';
 import navigation from '~/services/navigation';
 import Home from '~/pages/Home';
 import Cart from '~/pages/Cart';
 
-const { Navigator, Screen } = createStackNavigator();
+const { Navigator, Screen } = createNativeStackNavigator();
 
 export default () => (
   <NavigationContainer ref={navigation}>
