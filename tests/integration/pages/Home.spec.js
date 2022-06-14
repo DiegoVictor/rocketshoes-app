@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MockAdapter from 'axios-mock-adapter';
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { fireEvent, act } from '@testing-library/react-native';
 
 import { create } from 'react-test-renderer';

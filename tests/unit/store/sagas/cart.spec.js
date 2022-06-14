@@ -1,6 +1,6 @@
 import { runSaga } from 'redux-saga';
 import { call, select, put } from 'redux-saga/effects';
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { Alert } from 'react-native';
 
 import { updateAmount, addToCart } from '~/store/sagas/cart';
@@ -37,7 +37,7 @@ describe('Cart saga', () => {
   it('should not be able update item amount with invalid amount', async () => {
     const dispatch = jest.fn();
     const product = await factory.attrs('Product');
-    const amount = faker.datatype.number({ max: -1 });
+    const amount = -1;
 
     put.mockClear();
 

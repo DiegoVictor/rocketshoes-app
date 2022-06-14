@@ -1,4 +1,4 @@
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 
 import reducer, { initialState } from '~/store/reducers/cart';
 import {

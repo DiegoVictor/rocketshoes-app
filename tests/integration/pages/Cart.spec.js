@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 
 import Cart from '~/pages/Cart';
 import { removeFromCart, updateAmountRequest } from '~/store/actions/cart';
