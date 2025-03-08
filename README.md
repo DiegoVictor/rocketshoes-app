@@ -1,5 +1,5 @@
 # [App] Rocketshoes
-![CircleCI](https://img.shields.io/circleci/build/github/DiegoVictor/rocketshoes-app?style=flat-square&logo=circleci)
+[![CircleCI](https://img.shields.io/circleci/build/github/DiegoVictor/rocketshoes-app?style=flat-square&logo=circleci)](https://app.circleci.com/pipelines/github/DiegoVictor/rocketshoes-app?branch=main)
 [![react-native](https://img.shields.io/badge/react--native-0.63.2-61dafb?style=flat-square&logo=react)](https://reactnative.dev/)
 [![redux](https://img.shields.io/badge/redux-4.0.5-764abc?style=flat-square&logo=redux)](https://redux.js.org/)
 [![styled-components](https://img.shields.io/badge/styled_components-4.4.1-db7b86?style=flat-square&logo=styled-components)](https://styled-components.com/)
