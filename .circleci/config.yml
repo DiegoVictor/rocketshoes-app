@@ -2,13 +2,9 @@ version: 2.1
 orbs:
   node: circleci/node@7.1.0
   codecov: codecov/codecov@4.2.0
-executors:
-  test-executor:
-    docker:
-      - image: cimg/node:16.14.2
 jobs:
   test:
-    executor: test-executor
+    executor: node/default
     steps:
       - checkout
       - node/install-packages:
