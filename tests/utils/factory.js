@@ -5,11 +5,11 @@ factory.define(
   'Product',
   {},
   {
-    id: faker.datatype.number,
+    id: faker.number.int,
     title: faker.commerce.productName,
     image: faker.image.imageUrl,
-    amount: () => faker.datatype.number({ min: 2, max: 5 }),
-    price: faker.datatype.number,
+    amount: () => faker.number.int({ min: 2, max: 5 }),
+    price: faker.number.int,
   },
 );
 
@@ -17,8 +17,8 @@ factory.define(
   'Stock',
   {},
   {
-    id: faker.datatype.number,
-    amount: () => faker.datatype.number({ min: 2, max: 5 }),
+    id: faker.number.int,
+    amount: () => faker.number.int({ min: 2, max: 5 }),
   },
 );
 
