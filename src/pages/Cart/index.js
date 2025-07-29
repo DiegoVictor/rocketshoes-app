@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialDesignIcons as Icon } from '@react-native-vector-icons/material-design-icons';
 import { Text, TouchableOpacity, ScrollView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 

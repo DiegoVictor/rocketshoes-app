@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialDesignIcons as Icon } from '@react-native-vector-icons/material-design-icons';
 import { FlatList, ScrollView } from 'react-native';
 
 import { formatPrice } from '~/util/format';

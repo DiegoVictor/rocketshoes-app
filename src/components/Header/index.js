@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MaterialDesignIcons as Icon } from '@react-native-vector-icons/material-design-icons';
 import { useSelector } from 'react-redux';
 
 import { Container, Logo, Basket, Amount } from './styles';
