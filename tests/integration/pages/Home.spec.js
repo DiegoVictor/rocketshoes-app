@@ -1,10 +1,8 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import MockAdapter from 'axios-mock-adapter';
 import { faker } from '@faker-js/faker';
-import { fireEvent, act } from '@testing-library/react-native';
+import { fireEvent, act, render, waitFor } from '@testing-library/react-native';
 
-import { create } from 'react-test-renderer';
 import api from '~/services/api';
 import Home from '~/pages/Home';
 import { addToCartRequest } from '~/store/actions/cart';
@@ -23,10 +21,10 @@ jest.mock('react-redux', () => ({
   useDispatch: () => mockUseDispatch(),
 }));
 
-describe('Home page', () => {
-  const apiMock = new MockAdapter(api);
-  const price = faker.datatype.number(100);
+const apiMock = new MockAdapter(api);
+const price = faker.number.int(100);
 
+describe('Home page', () => {
   it('should be able to see an item in the dashboard', async () => {
     const product = await factory.attrs('Product', {
       price,
@@ -42,26 +40,16 @@ describe('Home page', () => {
 
     apiMock.onGet('products').reply(200, [product]);
 
-    let root;
-    await act(async () => {
-      root = create(<Home />);
-    });
+    const { getByTestId } = render(<Home />);
+    await waitFor(() => getByTestId(`product_${product.id}`));
 
-    expect(
-      root.root.findByProps({
-        testID: `product_${product.id}`,
-      }),
-    ).toBeTruthy();
+    expect(getByTestId(`product_${product.id}`)).toBeTruthy();
 
-    const productTitle = root.root.findByProps({
-      testID: `product_title_${product.id}`,
-    });
+    const productTitle = getByTestId(`product_title_${product.id}`);
     expect(productTitle).toBeTruthy();
     expect(productTitle.props.children).toBe(product.title);
 
-    const productPrice = root.root.findByProps({
-      testID: `product_price_${product.id}`,
-    });
+    const productPrice = getByTestId(`product_price_${product.id}`);
     expect(productPrice).toBeTruthy();
     expect(productPrice.props.children).toBe(`R$ ${product.price.toFixed(2)}`);
   });
@@ -82,14 +70,11 @@ describe('Home page', () => {
 
     apiMock.onGet('products').reply(200, [product]);
 
-    let root;
-    await act(async () => {
-      root = create(<Home />);
-    });
+    const { getByTestId } = render(<Home />);
 
-    const button = root.root.findByProps({
-      testID: `product_add_${product.id}`,
-    });
+    await waitFor(() => getByTestId(`product_add_${product.id}`));
+
+    const button = getByTestId(`product_add_${product.id}`);
     expect(button).toBeTruthy();
 
     await act(async () => {
