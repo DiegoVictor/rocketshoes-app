@@ -10,12 +10,18 @@ import Home from '~/pages/Home';
 import { addToCartRequest } from '~/store/actions/cart';
 import factory from '../../utils/factory';
 
-jest.mock('react-redux');
 jest.mock('~/util/format', () => {
   return {
     formatPrice: value => `R$ ${value.toFixed(2)}`,
   };
 });
+
+const mockUseSelector = jest.fn();
+const mockUseDispatch = jest.fn();
+jest.mock('react-redux', () => ({
+  useSelector: cb => mockUseSelector(cb),
+  useDispatch: () => mockUseDispatch(),
+}));
 
 describe('Home page', () => {
   const apiMock = new MockAdapter(api);
@@ -27,8 +33,8 @@ describe('Home page', () => {
       priceFormatted: `R$ ${price}.00`,
     });
 
-    useDispatch.mockReturnValue(jest.fn());
-    useSelector.mockImplementation(cb =>
+    mockUseDispatch.mockReturnValue(jest.fn());
+    mockUseSelector.mockImplementation(cb =>
       cb({
         cart: [product],
       }),
@@ -67,8 +73,8 @@ describe('Home page', () => {
       priceFormatted: `R$ ${price}.00`,
     });
 
-    useDispatch.mockReturnValue(dispatch);
-    useSelector.mockImplementation(cb =>
+    mockUseDispatch.mockReturnValue(dispatch);
+    mockUseSelector.mockImplementation(cb =>
       cb({
         cart: [],
       }),

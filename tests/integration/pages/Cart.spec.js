@@ -1,30 +1,35 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import { useDispatch, useSelector } from 'react-redux';
 import { faker } from '@faker-js/faker';
 
 import Cart from '~/pages/Cart';
 import { removeFromCart, updateAmountRequest } from '~/store/actions/cart';
 import factory from '../../utils/factory';
 
-jest.mock('react-redux');
 jest.mock('~/util/format', () => {
   return {
     formatPrice: value => `R$ ${value.toFixed(2)}`,
   };
 });
 
-describe('Cart page', () => {
-  const price = faker.datatype.number({ min: 1, max: 100 });
+const mockUseSelector = jest.fn();
+const mockUseDispatch = jest.fn();
+jest.mock('react-redux', () => ({
+  useSelector: cb => mockUseSelector(cb),
+  useDispatch: () => mockUseDispatch(),
+}));
 
+const price = faker.number.int({ min: 1, max: 100 });
+
+describe('Cart page', () => {
   it('should be able to see an item on the cart', async () => {
     const product = await factory.attrs('Product', {
       price,
       priceFormatted: `R$ ${price}.00`,
     });
 
-    useDispatch.mockReturnValue(jest.fn());
-    useSelector.mockImplementation(cb =>
+    mockUseDispatch.mockReturnValue(jest.fn());
+    mockUseSelector.mockImplementation(cb =>
       cb({
         cart: [product],
       }),
@@ -46,8 +51,8 @@ describe('Cart page', () => {
   });
 
   it('should be able to see the cart empty', async () => {
-    useDispatch.mockReturnValue(jest.fn());
-    useSelector.mockImplementation(cb =>
+    mockUseDispatch.mockReturnValue(jest.fn());
+    mockUseSelector.mockImplementation(cb =>
       cb({
         cart: [],
       }),
@@ -65,8 +70,8 @@ describe('Cart page', () => {
     });
     const dispatch = jest.fn();
 
-    useDispatch.mockReturnValue(dispatch);
-    useSelector.mockImplementation(cb =>
+    mockUseDispatch.mockReturnValue(dispatch);
+    mockUseSelector.mockImplementation(cb =>
       cb({
         cart: [product],
       }),
@@ -84,8 +89,8 @@ describe('Cart page', () => {
     });
     const dispatch = jest.fn();
 
-    useDispatch.mockReturnValue(dispatch);
-    useSelector.mockImplementation(cb =>
+    mockUseDispatch.mockReturnValue(dispatch);
+    mockUseSelector.mockImplementation(cb =>
       cb({
         cart: [product],
       }),
@@ -105,8 +110,8 @@ describe('Cart page', () => {
     });
     const dispatch = jest.fn();
 
-    useDispatch.mockReturnValue(dispatch);
-    useSelector.mockImplementation(cb =>
+    mockUseDispatch.mockReturnValue(dispatch);
+    mockUseSelector.mockImplementation(cb =>
       cb({
         cart: [product],
       }),
