@@ -1,12 +1,12 @@
 # [App] Rocketshoes
 [![CircleCI](https://img.shields.io/circleci/build/github/DiegoVictor/rocketshoes-app?style=flat-square&logo=circleci)](https://app.circleci.com/pipelines/github/DiegoVictor/rocketshoes-app?branch=main)
-[![react-native](https://img.shields.io/badge/react--native-0.63.2-61dafb?style=flat-square&logo=react)](https://reactnative.dev/)
-[![redux](https://img.shields.io/badge/redux-4.0.5-764abc?style=flat-square&logo=redux)](https://redux.js.org/)
-[![styled-components](https://img.shields.io/badge/styled_components-4.4.1-db7b86?style=flat-square&logo=styled-components)](https://styled-components.com/)
-[![prettier](https://img.shields.io/badge/prettier-1.16.4-F7B93E?style=flat-square&logo=prettier)](https://prettier.io/)
-[![eslint](https://img.shields.io/badge/eslint-6.8.0-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)
+[![react-native](https://img.shields.io/badge/react--native-0.80.2-61dafb?style=flat-square&logo=react)](https://reactnative.dev/)
+[![redux](https://img.shields.io/badge/redux-5.0.1-764abc?style=flat-square&logo=redux)](https://redux.js.org/)
+[![styled-components](https://img.shields.io/badge/styled_components-6.3.8-db7b86?style=flat-square&logo=styled-components)](https://styled-components.com/)
+[![prettier](https://img.shields.io/badge/prettier-3.6.2-F7B93E?style=flat-square&logo=prettier)](https://prettier.io/)
+[![eslint](https://img.shields.io/badge/eslint-9.32.0-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)
 [![airbnb-style](https://flat.badgen.net/badge/style-guide/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)
-[![jest](https://img.shields.io/badge/jest-24.9.0-brightgreen?style=flat-square&logo=jest)](https://jestjs.io/)
+[![jest](https://img.shields.io/badge/jest-30.0.5-brightgreen?style=flat-square&logo=jest)](https://jestjs.io/)
 [![coverage](https://img.shields.io/codecov/c/gh/DiegoVictor/rocketshoes-app?logo=codecov&style=flat-square)](https://codecov.io/gh/DiegoVictor/rocketshoes-app)
 [![MIT License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://raw.githubusercontent.com/DiegoVictor/rocketshoes-app/main/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)<br>
