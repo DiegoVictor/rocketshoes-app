@@ -22,7 +22,7 @@ This web application simulate a simple shoes store with cart system. All the res
     - [.env](#env)
     - [API](#api)
 - [Usage](#usage)
-  - [OS](#os)
+  - [Expo](#expo)
 - [Running the tests](#running-the-tests)
   - [Coverage report](#coverage-report)
 
@@ -104,11 +104,9 @@ Or:
 $ npm run start
 ```
 
-> See for more information in [Running On Device](https://reactnative.dev/docs/running-on-device).
+## Expo
 
-## OS
-
-This app was tested only with Android through USB connection and [Genymotion](https://www.genymotion.com/) (Emulator), is strongly recommended to use the same operational system, but of course you can use an emulator or a real device connected through wifi or USB.
+This project was built using [Expo](https://expo.dev), to know how to run it in any environment see [Set up your environment](https://docs.expo.dev/get-started/set-up-your-environment).
 
 # Running the tests
 
