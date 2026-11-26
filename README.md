@@ -30,7 +30,9 @@ This web application simulate a simple shoes store with cart system. All the res
 
 Click to expand.<br>
 <img src="https://raw.githubusercontent.com/DiegoVictor/rocketshoes-app/main/screenshots/dashboard.jpg" width="49%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/rocketshoes-app/main/screenshots/cart-empty.jpg" width="49%" />
 <img src="https://raw.githubusercontent.com/DiegoVictor/rocketshoes-app/main/screenshots/cart.jpg" width="49%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/rocketshoes-app/main/screenshots/dashboard-item-on-cart.jpg" width="49%" />
 
 # Installing
 
