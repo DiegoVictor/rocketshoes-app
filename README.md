@@ -60,7 +60,7 @@ In this file you may configure the API's url. Rename the `.env.example` in the r
 
 | key     | description | default                 |
 | ------- | ----------- | ----------------------- |
-| API_URL | API's url   | `http://localhost:3333` |
+| EXPO_PUBLIC_API_URL | API's url   | `http://localhost:3333` |
 
 ### API
 
